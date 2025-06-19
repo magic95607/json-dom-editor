@@ -1,0 +1,23 @@
+<div class="array-node">
+  <div cdkDropList [cdkDropListData]="arr" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of arr; let i = index; trackBy: trackByItem" class="array-item" cdkDrag>
+      <div class="array-item-controls">
+        <span class="drag-handle" cdkDragHandle *ngIf="!isMobile">☰</span>
+        <div class="mobile-sort-btns" *ngIf="isMobile">
+          <button class="icon-btn" *ngIf="i>0" (click)="moveItem(i, i-1)">▲</button>
+          <button class="icon-btn" *ngIf="i<arr.length-1" (click)="moveItem(i, i+1)">▼</button>
+        </div>
+      </div>
+      <div class="array-item-content">
+        <button class="icon-btn" *ngIf="isObjectOrArray(item)" (click)="enterChild.emit(i)">
+          <i class="pi pi-sign-in"></i>
+        </button>
+        <app-json-dom-editor [value]="item" [path]="path ? path + '.' + i : i" (valueChange)="onValueChange(i, $event)">
+        </app-json-dom-editor>
+        <button class="icon-btn" (click)="deleteItem(i)">❌</button>
+      </div>
+    </div>
+  </div>
+  <button class="add-btn" (click)="addItem()">➕ 新增項目</button>
+</div>
+<!-- 在每個 object/array 欄位旁加一個「進入」icon -->

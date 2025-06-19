@@ -1,0 +1,31 @@
+{
+  "name": "json-dom-editor",
+  "version": "0.1.0",
+  "description": "A modern, visual, and recursive JSON editor component for Angular, supporting object/array editing, drag-and-drop, and type switching.",
+  "author": "Alawn magic95607@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magic95607/json-dom-editor"
+  },
+  "keywords": [
+    "angular",
+    "json",
+    "editor",
+    "component",
+    "visual",
+    "object",
+    "array",
+    "drag-and-drop"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@angular/forms": "^16.2.0",
+    "@angular/cdk": "^16.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

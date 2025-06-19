@@ -1,0 +1,36 @@
+<div class="object-node">
+  <div *ngFor="let key of keys" class="object-pair-accordion">
+    <div class="object-pair-header">
+      <button class="accordion-toggle" (click)="toggleExpand(key)">
+        <span [ngClass]="{expanded: isExpanded(key)}">▶</span>
+      </button>
+      <input class="key-input" [ngModel]="key" (ngModelChange)="renameKey(key, $event)" />
+      <!-- 這裡加進入icon -->
+      <button class="icon-btn" *ngIf="isObjectOrArray(obj[key])" (click)="enterChild.emit(key)">
+        <i class="pi pi-sign-in"></i>
+      </button>
+      <button class="icon-btn" (click)="deleteKey(key)">❌</button>
+    </div>
+    <div *ngIf="isExpanded(key)" class="object-pair-body">
+      <app-json-dom-editor [value]="obj[key]" [path]="path ? path + '.' + key : key"
+        (valueChange)="onValueChange(key, $event)">
+      </app-json-dom-editor>
+    </div>
+  </div>
+
+  <!-- 新增欄位區塊 -->
+  <div *ngIf="addingKey" class="add-key-row">
+    <div class="add-key-fields">
+      <input id="new-key-input" class="key-input" [(ngModel)]="newKey" placeholder="欄位名稱"
+        (keyup.enter)="confirmAddKey()" (keyup.esc)="cancelAddKey()" />
+      <select class="type-select" [(ngModel)]="newType">
+        <option *ngFor="let t of valueTypes" [value]="t">{{ t }}</option>
+      </select>
+    </div>
+    <div class="add-key-actions">
+      <button class="icon-btn" (click)="confirmAddKey()" [disabled]="!newKey.trim()">✔</button>
+      <button class="icon-btn" (click)="cancelAddKey()">✖</button>
+    </div>
+  </div>
+  <button class="add-btn" *ngIf="!addingKey" (click)="startAddKey()">➕ 新增欄位</button>
+</div>

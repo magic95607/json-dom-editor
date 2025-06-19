@@ -1,0 +1,63 @@
+<div class="breadcrumb-bar" *ngIf="isMobile">
+  <span class="breadcrumb-seg" (click)="navigate.emit('')">root</span>
+  <span *ngIf="path">&gt;</span>
+  <ng-container *ngIf="path">
+    <ng-container *ngFor="let seg of path.split('.'); let i = index">
+      <span class="breadcrumb-seg" (click)="navigateTo(i)">
+        {{ seg }}
+      </span>
+      <span *ngIf="i < path.split('.').length - 1"> &gt; </span>
+    </ng-container>
+  </ng-container>
+</div>
+<div class="json-dom-editor">
+  <ng-container [ngSwitch]="getValueType(value)">
+    <!-- Object -->
+    <div *ngSwitchCase="'object'">
+      <div class="type-switch-bar">
+        <select class="type-select" [ngModel]="getValueType(value)" (ngModelChange)="setType($event)">
+          <option *ngFor="let t of valueTypes" [value]="t">
+            {{ t === 'string' ? '🔤' : t === 'number' ? '🔢' : t === 'boolean' ? '✔️' : t === 'object' ? '🗂️' : t ===
+            'array' ? '📚' : '␀' }}
+            {{ t }}
+          </option>
+        </select>
+      </div>
+      <app-json-object-editor [obj]="value" [path]="path" (enterChild)="onEnterChild($event)" (objChange)="onObjectChange($event)">
+      </app-json-object-editor>
+    </div>
+
+    <!-- Array -->
+    <div *ngSwitchCase="'array'">
+      <div class="type-switch-bar">
+        <select class="type-select" [ngModel]="getValueType(value)" (ngModelChange)="setType($event)">
+          <option *ngFor="let t of valueTypes" [value]="t">
+            {{ t === 'string' ? '🔤' : t === 'number' ? '🔢' : t === 'boolean' ? '✔️' : t === 'object' ? '🗂️' : t ===
+            'array' ? '📚' : '␀' }}
+            {{ t }}
+          </option>
+        </select>
+      </div>
+      <app-json-array-editor [arr]="value" [path]="path" (enterChild)="onEnterChild($event)" (arrChange)="onArrayChange($event)">
+      </app-json-array-editor>
+    </div>
+
+    <!-- Primitive -->
+    <div *ngSwitchDefault class="primitive-edit">
+      <select class="type-select" [ngModel]="getValueType(value)" (ngModelChange)="setType($event)">
+        <option *ngFor="let t of valueTypes" [value]="t">
+          {{ t === 'string' ? '🔤' : t === 'number' ? '🔢' : t === 'boolean' ? '✔️' : t === 'object' ? '🗂️' : t ===
+          'array' ? '📚' : '␀' }}
+          {{ t }}
+        </option>
+      </select>
+      <ng-container [ngSwitch]="getValueType(value)">
+        <input *ngSwitchCase="'string'" [ngModel]="value" (ngModelChange)="onPrimitiveChange($event)" />
+        <input *ngSwitchCase="'number'" type="number" [ngModel]="value" (ngModelChange)="onPrimitiveChange($event)" />
+        <input *ngSwitchCase="'boolean'" type="checkbox" [ngModel]="value"
+          (ngModelChange)="onPrimitiveChange($event)" />
+        <span *ngSwitchCase="'null'" class="null-label">null</span>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,74 @@
+.accordion-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.3rem;
+  font-size: 1.1em;
+  vertical-align: middle;
+  transition: transform 0.2s;
+  span {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .expanded {
+    transform: rotate(90deg);
+  }
+}
+
+.object-pair-accordion {
+  margin-bottom: 0.5rem;
+  .object-pair-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .object-pair-body {
+    margin: 0.5rem 0 0 0;
+    padding: 0.7rem 1rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px #0001;
+  }
+}
+.add-key-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0.7rem 0 0.5rem 0;
+  background: #f1f8e9;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 4px #c5e1a5aa;
+
+  .add-key-fields {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+  }
+  .add-key-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .key-input {
+    flex: 2 1 0;
+    min-width: 0;
+  }
+  .type-select {
+    flex: 1 1 0;
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .add-key-row .add-key-fields {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+  .add-key-row .add-key-actions {
+    justify-content: stretch;
+  }
+}
