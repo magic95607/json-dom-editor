@@ -28,6 +28,10 @@ export class JsonObjectEditorComponent {
     return typeof val === 'object' && val !== null;
   }
 
+  onEnterChild(newPath: string) {
+    this.enterChild.emit(newPath);
+  }
+
   private expandState = inject(JsonExpandStateService)
 
   get keys(): string[] {

@@ -12,7 +12,7 @@
         <button class="icon-btn" *ngIf="isObjectOrArray(item)" (click)="enterChild.emit(i)">
           <i class="pi pi-sign-in"></i>
         </button>
-        <app-json-dom-editor [value]="item" [path]="path ? path + '.' + i : i" (valueChange)="onValueChange(i, $event)">
+        <app-json-dom-editor [value]="item" [path]="path ? path + '.' + i : i" (enterChild)="onEnterChild($event)" (valueChange)="onValueChange(i, $event)">
         </app-json-dom-editor>
         <button class="icon-btn" (click)="deleteItem(i)">❌</button>
       </div>

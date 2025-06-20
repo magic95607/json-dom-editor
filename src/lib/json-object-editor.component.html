@@ -12,7 +12,7 @@
       <button class="icon-btn" (click)="deleteKey(key)">❌</button>
     </div>
     <div *ngIf="isExpanded(key)" class="object-pair-body">
-      <app-json-dom-editor [value]="obj[key]" [path]="path ? path + '.' + key : key"
+      <app-json-dom-editor [value]="obj[key]" [path]="path ? path + '.' + key : key" (enterChild)="onEnterChild($event)"
         (valueChange)="onValueChange(key, $event)">
       </app-json-dom-editor>
     </div>

@@ -24,9 +24,13 @@ export class JsonArrayEditorComponent {
   @Output() arrChange = new EventEmitter<any[]>();
   isMobile = window.innerWidth <= 600;
   @Output() enterChild = new EventEmitter<string>();
-// 當物件/陣列欄位被點擊時
+  // 當物件/陣列欄位被點擊時
   isObjectOrArray(val: any) {
     return typeof val === 'object' && val !== null;
+  }
+
+  onEnterChild(newPath: string) {
+    this.enterChild.emit(newPath);
   }
 
   constructor() {
