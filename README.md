@@ -22,3 +22,8 @@ A modern, visual, and recursive JSON editor component for Angular, supporting ob
 ```bash
 npm install json-dom-editor
 # 需要 Angular 16+ 與 @angular/cdk
+
+
+## DEBUG
+```bash
+ng build json-dom-editor --watch
