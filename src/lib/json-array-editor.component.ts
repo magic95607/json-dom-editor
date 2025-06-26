@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JsonDomEditorComponent } from './json-dom-editor.component';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,8 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
     DragDropModule,
     forwardRef(() => JsonDomEditorComponent)
   ],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonArrayEditorComponent {
   @Input() arr: any[] = [];

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { JsonObjectEditorComponent } from './json-object-editor.component';
 import { JsonArrayEditorComponent } from './json-array-editor.component';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,8 @@ type ValueType = 'string' | 'number' | 'boolean' | 'object' | 'array' | 'null';
         JsonObjectEditorComponent,
         JsonArrayEditorComponent
     ],
-    standalone: true
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonDomEditorComponent {
     @Input() value: any;

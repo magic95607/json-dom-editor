@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JsonDomEditorComponent } from './json-dom-editor.component';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +17,8 @@ type ValueType = 'string' | 'number' | 'boolean' | 'object' | 'array' | 'null';
     FormsModule,
     forwardRef(() => JsonDomEditorComponent)
   ],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonObjectEditorComponent {
   @Input() obj: any = {};
